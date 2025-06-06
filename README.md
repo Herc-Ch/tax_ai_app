@@ -23,14 +23,17 @@ It features a responsive home page and a user-friendly form for basic tax data i
    cd tax_ai_app
    ```
 2. Install dependencies
+   
  ```bash
    npm install
  ```  
 3. Start the development server
+   
  ```bash
    npm start
  ```
 4. Open the App
+   
 - Go to http://localhost:3000 in your browser.
 
 - The app will reload automatically as you edit the code.

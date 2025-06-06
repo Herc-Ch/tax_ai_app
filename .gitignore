@@ -7,6 +7,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 .env
+<<<<<<< HEAD
+=======
+
+>>>>>>> ca03b3829514aa58cd11f0054d3e8b10cf4faeb0
 # C extensions
 *.so
 

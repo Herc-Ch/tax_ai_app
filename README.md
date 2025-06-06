@@ -1,88 +1,126 @@
+
 # Tax AI App
 
-This is a React-based web application designed to provide AI-driven tax filing assistance.  
-It features a responsive home page and a user-friendly form for basic tax data input.
+A full-stack web application for AI-powered tax advice.  
+Frontend: React.  
+Backend: Flask (Python) with OpenAI integration.  
+**Develop and run easily with Docker and Docker Compose.**
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start (Docker Recommended)
 
-### **Prerequisites**
+### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v16 or newer recommended)
-- npm (comes with Node.js)
+- [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
+- An OpenAI API key (format: `sk-...`)
 
 ---
 
-### **Setup Process**
+### 1. Clone the repository
 
-1. **Clone the repository**
+```bash
+git clone https://github.com/Herc-Ch/tax_ai_app.git
+cd tax_ai_app
+```
 
-   ```bash
-   git clone https://github.com/Herc-Ch/tax_ai_app.git
-   cd tax_ai_app
-   ```
-2. Install dependencies
-   
-   ```bash
-   npm install
-   ```  
-3. Start the development server
-   
-   ```bash
-   npm start
-   ```
-4. Open the App
-   
-- Go to http://localhost:3000 in your browser.
-
-- The app will reload automatically as you edit the code.
 ---
 
-## 🖥️ Backend API Integration
+### 2. Setup your OpenAI API Key
 
-### Backend (Flask) Prerequisites
+Create a `.env` file in your project root with:
 
-- [Python 3.8+](https://www.python.org/)
-- [pip](https://pip.pypa.io/en/stable/)
+```env
+OPENAI_API_KEY=sk-your-openai-api-key-here
+```
 
-### Setup & Run the Backend
+> ⚠️ Never commit your `.env` file or API keys to public repositories!
 
-1. **Navigate to the backend directory:**
-   ```bash
-   cd backend
-   ```
-2. Install Dependencies
-   ```bash
-   pip install flask flask-cors
-   ```
-3. Run the Flash backend server
-   ```bash
-   python app.py
-   ```
-   
+---
+
+### 3. Build and Run the App (all with Docker!)
+
+```bash
+docker-compose up --build
+```
+
+- **Frontend:** http://localhost:3000  
+- **Backend API:** http://localhost:5000
+
+---
+
+## 🐳 Docker Overview
+
+- **Frontend:** Uses Node.js to build your React app, then serves with Nginx for production.
+- **Backend:** Runs Flask, handles form data and connects to OpenAI for tax advice.
+- **No Python/Node/npm install required on your machine** – all happens in the containers.
+
+---
+
 ## 🔗 API Endpoints
 
-Your backend exposes these endpoints at `http://localhost:5000/api/submit-tax`:
+Backend exposes endpoints at `http://localhost:5000/api/submit-tax`:
 
-| Method | Endpoint                              | Description                           | Example Body (JSON)                  |
-|--------|---------------------------------------|---------------------------------------|--------------------------------------|
-| POST   | /api/submit-tax                       | Submit new tax data                   | `{ "name": "Alice", "income": 1000 }`|
-| GET    | /api/submit-tax                       | Get all tax data submissions          | –                                    |
-| PUT    | /api/submit-tax                       | Update existing tax data (by name)    | `{ "name": "Alice", "income": 1500 }`|
-| DELETE | /api/submit-tax?name=Alice            | Delete submission by name             | –                                    |
+| Method | Endpoint                        | Description                                | Example Body (JSON)                            |
+|--------|---------------------------------|--------------------------------------------|------------------------------------------------|
+| POST   | /api/submit-tax                 | Submit new tax data                        | `{ "filing_status": "single", ... }`           |
+| GET    | /api/submit-tax                 | Get all tax data submissions               | –                                              |
+| PUT    | /api/submit-tax                 | Update tax data at a given index           | `{ "index": 0, "income": 1500, ... }`          |
+| DELETE | /api/submit-tax?index=0         | Delete tax submission at given index       | –                                              |
 
-You can test these with Postman or your React app.
 
-🏃 How to Run Both Servers Together
-1. Start the backend in one terminal:
-      ```bash
-    cd backend
-    python app.py
-      ```
-2. Start the frontend in another terminal:
-      ```bash
-    cd tax_ai_app
-    npm start
-      ```
-Now your frontend at http://localhost:3000 can communicate with your backend API at http://localhost:5000/api/submit-tax.
+**AI Advice:**  
+POST `/api/ai-tax-advice` with your tax form fields to receive AI-generated advice.
+
+---
+
+## 🛠️ Local Development Without Docker (Optional/Advanced)
+
+You do **NOT** need to install Node, Python, or pip if using Docker!  
+But for advanced local development:
+
+**Backend:**
+
+```bash
+cd backend
+pip install -r requirements.txt
+export OPENAI_API_KEY=sk-your-openai-api-key
+python app.py
+```
+
+**Frontend:**
+
+```bash
+npm install
+npm start
+```
+
+---
+
+## 🗂️ Project Structure
+
+```
+tax-ai-app/
+├── backend/
+│   ├── app.py
+│   ├── requirements.txt
+│   └── Dockerfile
+├── public/
+├── src/
+├── package.json
+├── Dockerfile
+├── docker-compose.yml
+└── .env
+```
+
+---
+
+## 📝 Notes
+
+- The backend stores data in memory (not persistent).
+- For production: use HTTPS, proper secrets management, and persistent storage.
+- All dependencies are installed inside containers when using Docker.
+
+---
+
+**Happy tax filing with AI!**

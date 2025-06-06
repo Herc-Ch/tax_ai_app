@@ -6,17 +6,28 @@ const TaxForm = () => {
     name: "",
     year: new Date().getFullYear(),
     income: "",
-    expenses: ""
+    expenses: "",
   });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: send data to backend or AI API
-    alert("Submitted: " + JSON.stringify(form, null, 2));
+
+    try {
+      const response = await fetch("http://localhost:5000/api/submit-tax", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const result = await response.json();
+      alert("Server says: " + result.message);
+    } catch (err) {
+      alert("Error submitting form: " + err);
+    }
   };
 
   return (
@@ -27,15 +38,33 @@ const TaxForm = () => {
       </label>
       <label>
         Year:
-        <input name="year" type="number" value={form.year} onChange={handleChange} required />
+        <input
+          name="year"
+          type="number"
+          value={form.year}
+          onChange={handleChange}
+          required
+        />
       </label>
       <label>
         Income (€):
-        <input name="income" type="number" value={form.income} onChange={handleChange} required />
+        <input
+          name="income"
+          type="number"
+          value={form.income}
+          onChange={handleChange}
+          required
+        />
       </label>
       <label>
         Expenses (€):
-        <input name="expenses" type="number" value={form.expenses} onChange={handleChange} required />
+        <input
+          name="expenses"
+          type="number"
+          value={form.expenses}
+          onChange={handleChange}
+          required
+        />
       </label>
       <button type="submit">Submit</button>
     </form>

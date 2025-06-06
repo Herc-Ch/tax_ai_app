@@ -24,14 +24,14 @@ It features a responsive home page and a user-friendly form for basic tax data i
    ```
 2. Install dependencies
    
- ```bash
+   ```bash
    npm install
- ```  
+   ```  
 3. Start the development server
    
- ```bash
+   ```bash
    npm start
- ```
+   ```
 4. Open the App
    
 - Go to http://localhost:3000 in your browser.

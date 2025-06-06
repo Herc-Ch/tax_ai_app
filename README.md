@@ -61,14 +61,16 @@ It features a responsive home page and a user-friendly form for basic tax data i
    python app.py
    ```
    
-🔗 API Endpoints
-Your backend exposes these endpoints at http://localhost:5000/api/submit-tax:
+## 🔗 API Endpoints
 
-Method	Endpoint	Description	Example Body (JSON)
-POST	/api/submit-tax	Submit new tax data	{ "name": "Alice", "income": 1000 }
-GET	/api/submit-tax	Get all tax data submissions	–
-PUT	/api/submit-tax	Update existing tax data (by name)	{ "name": "Alice", "income": 1500 }
-DELETE	/api/submit-tax?name=Alice	Delete submission by name	–
+Your backend exposes these endpoints at `http://localhost:5000/api/submit-tax`:
+
+| Method | Endpoint                              | Description                           | Example Body (JSON)                  |
+|--------|---------------------------------------|---------------------------------------|--------------------------------------|
+| POST   | /api/submit-tax                       | Submit new tax data                   | `{ "name": "Alice", "income": 1000 }`|
+| GET    | /api/submit-tax                       | Get all tax data submissions          | –                                    |
+| PUT    | /api/submit-tax                       | Update existing tax data (by name)    | `{ "name": "Alice", "income": 1500 }`|
+| DELETE | /api/submit-tax?name=Alice            | Delete submission by name             | –                                    |
 
 You can test these with Postman or your React app.
 

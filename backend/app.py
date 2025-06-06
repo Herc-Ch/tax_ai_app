@@ -1,44 +1,35 @@
-from flask import Flask, jsonify, request
+from dotenv import load_dotenv
+load_dotenv()
+import os
+import openai
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-# In-memory store (for demonstration)
-tax_data = {}
+# Make sure to set your OpenAI API key as an environment variable!
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
+@app.route('/api/ai-tax-advice', methods=['POST'])
+def ai_tax_advice():
+    data = request.json
+    user_question = data.get("question", "")
 
-@app.route("/api/submit-tax", methods=["GET", "POST", "PUT", "DELETE"])
-def submit_tax():
-    if request.method == "POST":
-        data = request.json
-        name = data.get("name", "Unknown")
-        # Save/overwrite user data (using 'name' as a simple key)
-        tax_data[name] = data
-        response = {"message": f"Received tax info for {name}.", "received": data}
-        return jsonify(response), 201
+    if not user_question:
+        return jsonify({"error": "No question provided."}), 400
 
-    elif request.method == "GET":
-        # Return all tax data (for demonstration)
-        return jsonify(list(tax_data.values())), 200
-
-    elif request.method == "PUT":
-        data = request.json
-        name = data.get("name")
-        if name and name in tax_data:
-            tax_data[name] = data  # Update existing entry
-            return jsonify({"message": f"Updated tax info for {name}."}), 200
-        else:
-            return jsonify({"error": "Name not found"}), 404
-
-    elif request.method == "DELETE":
-        name = request.args.get("name")
-        if name and name in tax_data:
-            del tax_data[name]
-            return jsonify({"message": f"Deleted tax info for {name}."}), 200
-        else:
-            return jsonify({"error": "Name not found"}), 404
-
-
-if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    # Call OpenAI API (using GPT-3.5/4, or whichever is provided)
+    try:
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # or whatever model your key allows
+            messages=[
+                {"role": "system", "content": "You are a helpful AI tax advisor."},
+                {"role": "user", "content": user_question}
+            ],
+            max_tokens=300
+        )
+        advice = completion.choices[0].message.content.strip()
+        return jsonify({"advice": advice})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

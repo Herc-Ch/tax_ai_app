@@ -82,7 +82,10 @@ def ai_tax_advice():
         f"work-related expenses of {work_expenses} euros, mortgage interest of {mortgage_interest} euros, "
         f"charitable donations of {charity_donations} euros, education expenses of {education_expenses} euros, "
         f"retirement contributions of {retirement_contributions} euros, and {dependents} dependents. "
-        "What general tax advice would you give me in this case?"
+        "Please give me three specific, actionable tax recommendations under the 2025 Greek tax code, "
+        "including example numerical limits or thresholds (e.g., “mortgage interest deductible up to €3 000”; "
+        "“charitable donations up to 10% of taxable income”; “retirement contributions deductible up to €1 500”). "
+        "If you are uncertain, state that these are approximate figures."
     )
 
     try:

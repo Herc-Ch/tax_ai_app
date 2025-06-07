@@ -41,7 +41,7 @@ OPENAI_API_KEY=sk-your-openai-api-key-here
 ### 3. Build and Run the App (all with Docker!)
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 - **Frontend:** http://localhost:3000  

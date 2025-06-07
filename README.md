@@ -123,5 +123,22 @@ tax-ai-app/
 - All dependencies are installed inside containers when using Docker.
 
 ---
+## 🛠 Continuous Integration (CI) Pipeline
+
+This project uses **GitHub Actions** to automate the testing and validation process with every code change.
+
+### ⚙️ How It Works
+
+- **Trigger**: The CI pipeline runs automatically on every `push` or `pull request` to the `main` branch.
+- **Steps**:
+  1. **Checkout Code** – Retrieves the latest code from the repository.
+  2. **Set Up Docker** – Installs Docker and Docker Compose for building and running services.
+  3. **Build and Start Services** – Builds backend and frontend containers using `docker-compose`.
+  4. **Run Backend Tests** – Executes Python unit tests using `pytest` inside the backend container.
+  5. **Linting** – A separate job uses **Super-Linter** to check code quality and formatting for multiple languages (Python, JavaScript, CSS, Markdown, YAML, etc.).
+
+### 🔐 Secrets
+
+The pipeline uses the `OPENAI_API_KEY` stored as a GitHub Secret to run the backend in CI without exposing sensitive credentials.
 
 **Happy tax filing with AI!**

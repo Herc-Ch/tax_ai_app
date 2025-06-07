@@ -4,20 +4,17 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .home {
   padding: 2rem;
   max-width: 600px;
   margin: auto;
 }
-
 @media (max-width: 600px) {
 
   .home {
     padding: 1rem;
   }
 }
-
 .tax-form {
   display: flex;
   flex-direction: column;
@@ -25,13 +22,11 @@ body {
   max-width: 400px;
   margin: 2rem auto;
 }
-
 .tax-form label {
   display: flex;
   flex-direction: column;
   font-weight: 500;
 }
-
 .tax-form input {
   padding: 0.5rem;
   margin-top: 0.3rem;

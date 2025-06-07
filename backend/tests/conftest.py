@@ -1,6 +1,5 @@
 import os
 import sys
-
 import pytest
 
 # Add /app to sys.path so we can import app.py

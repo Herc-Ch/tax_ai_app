@@ -44,8 +44,9 @@ OPENAI_API_KEY=sk-your-openai-api-key-here
 docker compose up --build
 ```
 
-- **Frontend:** http://localhost:3000  
-- **Backend API:** http://localhost:5000
+- **Frontend:** [http://localhost:3000](http://localhost:3000)  
+- **Backend API:** [http://localhost:5000](http://localhost:5000)
+
 
 ---
 
@@ -99,7 +100,7 @@ npm start
 
 ## 🗂️ Project Structure
 
-```
+```text
 tax-ai-app/
 ├── backend/
 │   ├── app.py

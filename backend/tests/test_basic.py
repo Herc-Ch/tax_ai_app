@@ -1,15 +1,9 @@
-def test_health_check(client):
-    # Simple check for /api/submit-tax GET to verify server is running
-    response = client.get("/api/submit-tax")
-    assert response.status_code == 200
-    assert isinstance(response.get_json(), list)
+def test_submit_tax_post(client):
+    res = client.post("/api/submit-tax", json={"name": "John", "income": 40000})
+    assert res.status_code == 201
+    assert "Received tax info." in res.get_json()["message"]
 
-
-# def test_advice_route(client, mocker):
-#     mock_response = {"advice": "Dummy"}
-#     mock_openai = mocker.patch(
-#         "openai.ChatCompletion.create", return_value=mock_response
-#     )
-#     response = client.post("/api/advice", json={"data": "test"})
-#     assert response.status_code == 200
-#     assert "advice" in response.json
+def test_submit_tax_get(client):
+    res = client.get("/api/submit-tax")
+    assert res.status_code == 200
+    assert isinstance(res.get_json(), list)

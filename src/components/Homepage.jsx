@@ -1,5 +1,5 @@
 const HomePage = () => (
-  <section className="home">
+  <section className='home'>
     <h1>AI Tax Filing Assistant</h1>
     <p>
       Welcome to the AI-powered tax assistant. This web application guides you
@@ -7,6 +7,6 @@ const HomePage = () => (
       AI.
     </p>
   </section>
-);
+)
 
-export default HomePage;
+export default HomePage

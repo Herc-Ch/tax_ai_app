@@ -1,4 +1,3 @@
-// src/components/HomePage.jsx
 const HomePage = () => (
   <section className="home">
     <h1>AI Tax Filing Assistant</h1>

@@ -1,15 +1,14 @@
-// src/App.jsx
-import HomePageGz from './components/Homepage'
-import TaxForm from './components/TaxForm'
-import './styles/main.css'
+import HomePageG from "./components/HomePage";
+import TaxForm from "./components/TaxForm";
+import "./styles/main.css";
 
-function App () {
+function App() {
   return (
     <div>
-      <HomePageGz />
+      <HomePageG />
       <TaxForm />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

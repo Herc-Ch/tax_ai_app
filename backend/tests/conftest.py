@@ -7,6 +7,7 @@ import pytest
 # sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from app import app as flask_app  # noqa: E402
+# print("flask_app type:", type(flask_app))
 
 
 @pytest.fixture

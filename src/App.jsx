@@ -1,4 +1,4 @@
-import HomePage from "./components/HomePage";
+import HomePage from "./components/Homepage";
 import TaxForm from "./components/TaxForm";
 import "./styles/main.css";
 

@@ -1,12 +1,12 @@
 // src/App.jsx
-import HomePage from './components/HomePage'
+import HomePageG from './components/Homepage'
 import TaxForm from './components/TaxForm'
 import './styles/main.css'
 
 function App () {
   return (
     <div>
-      <HomePage />
+      <HomePageG />
       <TaxForm />
     </div>
   )

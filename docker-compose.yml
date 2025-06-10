@@ -11,6 +11,7 @@ services:
       - "5000:5000"
     volumes:
       - ./backend:/app
+      - ./instance:/app/instance
     restart: unless-stopped
     working_dir: /app
 

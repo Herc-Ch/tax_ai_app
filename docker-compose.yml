@@ -11,6 +11,7 @@ services:
       - "5000:5000"
     volumes:
       - ./backend:/app
+      - ./backend/tax_data.db:/app/tax_data.db
     restart: unless-stopped
     working_dir: /app
 

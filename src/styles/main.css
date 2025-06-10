@@ -84,3 +84,71 @@ body {
   border-radius: 8px;
   font-size: 1rem;
 }
+
+.reset-btn {
+  margin-top: 1em;
+  background-color: #e74c3c;
+  /* A nice red */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 1.5em;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.1);
+}
+
+
+.reset-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.reset-btn:hover,
+.reset-btn:focus {
+  background-color: #c0392b;
+  /* Darker red on hover */
+}
+
+.fidget-spinner {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  animation: spin 1s linear infinite;
+}
+
+.fidget-spinner-euro {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2563eb;
+  /* You can pick any color or keep black */
+  text-shadow: 0 1px 5px #fff, 0 1px 10px #e0e0e0;
+}
+
+.fidget-spinner-euro.euro1 {
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fidget-spinner-euro.dollar1 {
+  left: -14px;
+  top: 75%;
+  transform: translateY(-50%);
+}
+
+.fidget-spinner-euro.euro2 {
+  right: -14px;
+  top: 75%;
+  transform: translateY(-50%);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

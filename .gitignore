@@ -1,6 +1,27 @@
 node_modules/
 
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets/config
 .env
 
-__pycache__/
-*.pyc
+# SQLite database files
+*.db
+*.sqlite3
+
+# Flask instance folder (contains config, SQLite DB, secrets)
+instance/

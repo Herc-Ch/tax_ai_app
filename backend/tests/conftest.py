@@ -1,15 +1,26 @@
+import pytest
 import os
 
-print("Current working directory:", os.getcwd())
-print("Directory listing of /app:", os.listdir("/app"))
-print("Directory listing of /app/tests:", os.listdir(os.path.dirname(__file__)))
-import pytest
-from main import app as flask_app  # noqa: E402
+from main import app as flask_app, tax_data
+from forms import TaxAdviceForm
 
-print("flask_app type:", type(flask_app))
-print("flask_app repr:", repr(flask_app))
-
+@pytest.fixture(autouse=True)
+def clear_tax_data():
+    # run before each test
+    tax_data.clear()
+    yield
+    # and after
+    tax_data.clear()
 
 @pytest.fixture
-def client():
-    return flask_app.test_client()
+def app():
+    # Configure Flask for testing
+    flask_app.config.update({
+        "TESTING": True,
+        "WTF_CSRF_ENABLED": False,
+    })
+    yield flask_app
+
+@pytest.fixture
+def client(app):
+    return app.test_client()

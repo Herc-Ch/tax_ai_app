@@ -1,6 +1,6 @@
 import pytest
 
-import backend.main as bm
+import main as bm
 
 
 class DummyResp:

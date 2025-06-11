@@ -1,7 +1,7 @@
 import pytest
 
-from backend.main import app as flask_app
-from backend.main import tax_data
+from main import app as flask_app
+from main import tax_data
 
 
 @pytest.fixture(autouse=True)

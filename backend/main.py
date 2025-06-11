@@ -305,7 +305,7 @@ def ai_tax_advice():
         With all these in mind give me three specific, actionable tax recommendations under the {current_year} {country} tax code,
         including example numerical limits or thresholds (e.g., “mortgage interest deductible up to €3 000”;
         charitable donations up to 10% of taxable income”; “retirement contributions deductible up to €1 500”).
-        If you are uncertain, state that these are approximate figures.
+        If you are uncertain, state that these are approximate figures. Use 
     """
 
     try:

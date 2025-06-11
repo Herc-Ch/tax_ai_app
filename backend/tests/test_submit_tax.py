@@ -1,6 +1,3 @@
-import json
-
-
 def test_submit_and_get(client):
     payload = {
         "filing_status": "single",

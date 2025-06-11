@@ -1,5 +1,7 @@
 import pytest
 
+import backend.main as bm
+
 
 class DummyResp:
     def __init__(self, text):
@@ -8,9 +10,9 @@ class DummyResp:
 
 @pytest.fixture(autouse=True)
 def stub_openai(monkeypatch):
-    # Stub out OpenAI completions
     monkeypatch.setattr(
-        "main.client.chat.completions.create",
+        bm.client.chat.completions,
+        "create",
         lambda **kw: DummyResp("This is fake advice"),
     )
     yield

@@ -297,16 +297,36 @@ def ai_tax_advice():
     num_of_dependents = form.dependents.data
     # Use validated and type-correct data from the form
     question = f"""
-        I am a {age}-year-old {filing_status} living in {country},
-        working as a {employment_type}, with an annual income of {income} euros,
-        work-related expenses of {work_expenses or 0} euros, mortgage interest of {mortage_interest or 0} euros,
-        charitable donations of {charity_expenses or 0} euros, education expenses of {education_expenses or 0} euros,
-        retirement contributions of {retirement_expenses or 0} euros, and {num_of_dependents or 0} dependents.
-        With all these in mind give me three specific, actionable tax recommendations under the {current_year} {country} tax code,
-        including example numerical limits or thresholds (e.g., “mortgage interest deductible up to €3 000”;
-        charitable donations up to 10% of taxable income”; “retirement contributions deductible up to €1 500”).
-        If you are uncertain, state that these are approximate figures. Use 
-    """
+I am a {age}-year-old {filing_status} living in {country}, working as a {employment_type}.
+Here is my financial information for the year {current_year}:
+- Annual income: €{income}
+- Work-related expenses: €{work_expenses or 0}
+- Mortgage interest paid: €{mortage_interest or 0}
+- Charitable donations: €{charity_expenses or 0}
+- Education expenses: €{education_expenses or 0}
+- Retirement contributions: €{retirement_expenses or 0}
+- Number of dependents: {num_of_dependents or 0}
+
+**Please:**
+Start by saying that for the tax year {current_year} in {country}:
+1. Compute my **total deductible expenses** and my resulting **taxable income**.
+   - Show each step clearly (e.g. "Total deductions = A + B + ... = Z").
+2. Based on the **{current_year} tax code in {country}**, provide **three specific, actionable tax recommendations** that apply to my numbers.
+   - Include relevant thresholds or limits (e.g. "donations deductible up to 10% of taxable income", "mortgage interest deductible up to €3 000").
+   - For each recommendation, show how it applies to my inputs using actual numbers.
+3. If any figures are uncertain or estimated, mark them clearly as approximations.
+
+
+**Output Format:**
+I. Calculations  
+II. Recommendation #1  
+ - Rule name & citation  
+ - How it applies to me  
+III. Recommendation #2  
+IV. Recommendation #3  
+
+Thank you!
+"""
 
     try:
         response = client.chat.completions.create(
@@ -315,7 +335,8 @@ def ai_tax_advice():
                 {"role": "system", "content": "You are a helpful AI tax advisor."},
                 {"role": "user", "content": question},
             ],
-            max_tokens=300,
+            max_tokens=1500,
+            temperature=0.7,
         )
         advice = response.choices[0].message.content.strip()
         record = TaxRawData(

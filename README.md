@@ -83,7 +83,7 @@ But for advanced local development:
 cd backend
 pip install -r requirements.txt
 export OPENAI_API_KEY=sk-your-openai-api-key
-python app.py
+python main.py
 ```
 
 **Frontend:**
@@ -91,24 +91,6 @@ python app.py
 ```bash
 npm install
 npm start
-```
-
----
-
-## 🗂️ Project Structure
-
-```text
-tax-ai-app/
-├── backend/
-│   ├── app.py
-│   ├── requirements.txt
-│   └── Dockerfile
-├── public/
-├── src/
-├── package.json
-├── Dockerfile
-├── docker-compose.yml
-└── .env
 ```
 
 ---

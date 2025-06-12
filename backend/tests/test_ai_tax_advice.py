@@ -1,23 +1,3 @@
-import pytest
-
-import main as bm
-
-
-class DummyResp:
-    def __init__(self, text):
-        self.choices = [type("C", (), {"message": type("M", (), {"content": text})})]
-
-
-@pytest.fixture(autouse=True)
-def stub_openai(monkeypatch):
-    monkeypatch.setattr(
-        bm.client.chat.completions,
-        "create",
-        lambda **kw: DummyResp("This is fake advice"),
-    )
-    yield
-
-
 def test_ai_tax_advice_success(client):
     payload = {
         "filing_status": "single",
@@ -29,7 +9,7 @@ def test_ai_tax_advice_success(client):
         "mortgage_interest": 0,
         "charity_donations": 0,
         "education_expenses": 0,
-        "retirement_contributions": 0,
+        "retirement_contributions": 0, 
         "dependents": 0,
     }
     res = client.post("/api/ai-tax-advice", json=payload)

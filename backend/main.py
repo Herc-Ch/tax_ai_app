@@ -336,9 +336,10 @@ Thank you!
                 {"role": "user", "content": question},
             ],
             max_tokens=1500,
-            temperature=0.7,
+            temperature=0.6,
         )
         advice = response.choices[0].message.content.strip()
+        # print("🧠 AI RESPONSE:\n", advice, flush=True)
         record = TaxRawData(
             filing_status=filing_status,
             age=age,

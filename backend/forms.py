@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, NumberRange, Optional
 
 class TaxAdviceForm(FlaskForm):
     filing_status = StringField("Filing Status", validators=[DataRequired()])
-    age = IntegerField("Age", validators=[DataRequired(), NumberRange(min=18, max=99)])
+    age = IntegerField("Age", validators=[DataRequired(), NumberRange(min=18, max=98)])
     country = StringField("Country", validators=[DataRequired()])
     employment_type = StringField("Employment Type", validators=[DataRequired()])
     income = FloatField("Income", validators=[DataRequired(), NumberRange(min=0)])

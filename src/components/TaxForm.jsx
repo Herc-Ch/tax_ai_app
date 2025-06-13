@@ -65,7 +65,7 @@ const TaxForm = ({ onAdvice }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("🔔 handleSubmit fired — form values:", form);
+    console.log(" handleSubmit fired — form values:", form);
     setLoading(true);
     setAdvice("");
     try {
